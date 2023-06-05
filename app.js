@@ -1,5 +1,5 @@
 const mysql = require('mysql');
-
+const utf8 = require('utf8');
 
 class Main{
     constructor() {
@@ -37,7 +37,7 @@ class Main{
             adrrese += this.data[i].split('adresse": "')[1].split('"')[0]
             adrrese += this.data[i].split('nomcom": "')[1].split('",')[0];
             const coo = this.data[i].split('coordinates": [')[1].split(']')[0]
-            this.give_data_to_db(i,name,adrrese,coo)
+            this.give_data_to_db(i,utf8.decode(name),utf8.decode(adrrese),coo)
         }
         this.get_data();
     }
